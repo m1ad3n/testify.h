@@ -7,18 +7,21 @@
 
 #ifdef _WIN64
     #include <Windows.h>
+
+    #define PASS_SYMBOL U"\u2714"
+    #define FAIL_SYMBOL U"\u2718"
 #endif
 
-#define PASS_SYMBOL "\u2714"
-#define FAIL_SYMBOL "\u2718"
-
 #ifdef __linux__
+    #define PASS_SYMBOL "\u2714"
+    #define FAIL_SYMBOL "\u2718"
+
     #define RESET_COLOR "\033[0m"
     #define GREEN_COLOR "\033[32m"
     #define RED_COLOR "\033[31m"
 #endif
 
-#define add_test(function) Test(function, #function).run();
+#define add_test(function) Test(function, #function).run()
 #define assert(got, wanted) return got == wanted ? true : false
 
 typedef struct Test {
@@ -43,7 +46,7 @@ typedef struct Test {
             #endif
             #ifdef _WIN64
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
-                std::cout << PASS_SYMBOL << " " << this->test_name << std::endl;
+                std::wcout << PASS_SYMBOL << " " << this->test_name << std::endl;
             #endif
         }
         else
@@ -53,7 +56,7 @@ typedef struct Test {
             #endif
             #ifdef _WIN64
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED);
-                std::cout << FAIL_SYMBOL << " " << this->test_name << std::endl;
+                std::wcout << FAIL_SYMBOL << " " << this->test_name << std::endl;
             #endif
         }
         #ifdef __linux__

@@ -15,8 +15,8 @@ bool test_sqrt_math()
 
 int main(int argc, char** argv)
 {
-    add_test(test_abs_math)
-    add_test(test_sqrt_math)
+    add_test(test_abs_math);
+    add_test(test_sqrt_math);
 
     return 0;
 }

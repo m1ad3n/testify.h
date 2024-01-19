@@ -1,0 +1,8 @@
+#!/bin/bash
+
+INSTALL_PATH="/usr/include"
+HEADER_FILE="./include/testify.h"
+
+sudo cp "$HEADER_FILE" "$INSTALL_PATH"
+
+echo "testify.h is moved to include path."
