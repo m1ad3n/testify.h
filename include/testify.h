@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <functional>
-#include <vector>
 
 #ifdef _WIN64
     #include <Windows.h>
@@ -46,7 +45,7 @@ typedef struct Test {
             #endif
             #ifdef _WIN64
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
-                std::wcout << PASS_SYMBOL << " " << this->test_name << std::endl;
+                std::cout << PASS_SYMBOL << " " << this->test_name << std::endl;
             #endif
         }
         else
