@@ -7,8 +7,8 @@
 #ifdef _WIN64
     #include <Windows.h>
 
-    #define PASS_SYMBOL U"\u2714"
-    #define FAIL_SYMBOL U"\u2718"
+    #define PASS_SYMBOL (char)251
+    #define FAIL_SYMBOL 'x'
 #endif
 
 #ifdef __linux__
@@ -55,15 +55,15 @@ typedef struct Test {
             #endif
             #ifdef _WIN64
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED);
-                std::wcout << FAIL_SYMBOL << " " << this->test_name << std::endl;
+                std::cout << FAIL_SYMBOL << " " << this->test_name << std::endl;
             #endif
         }
-        #ifdef __linux__
-            std::cout << RESET_COLOR;
-        #endif
-        #ifdef _WIN64
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-        #endif
+            #ifdef __linux__
+                std::cout << RESET_COLOR;
+            #endif
+            #ifdef _WIN64
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+            #endif
     }
 
 } Test;
